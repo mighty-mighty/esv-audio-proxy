@@ -5,120 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#FAFAF8">
+<meta name="theme-color" content="#F5F4F0">
 <title>In the Word — TPC 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --serif: 'Crimson Pro', Georgia, serif;
-  --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
-  --bg: #FAFAF8;
-  --text: #2C2B28;
-  --muted: #8A8680;
-  --faint: #ADA99F;
-  --line: #E5E3DE;
-  --hover: #F5F4F0;
-  --green: #6B8F71;
-  --green-dark: #5A7D60;
-  --gold: #B8960C;
-  --warm: #FFFBF0;
-  --sel: #EDF2EE;
-  --dark: #2C2B28;
-  --dark-mid: #3D3C38;
-  --dark-subtle: #4A4944;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --bg: #F5F4F0;
+  --card: #FFFFFF;
+  --text: #1A1A18;
+  --sub: #7A776E;
+  --faint: #B0ADA5;
+  --line: #E8E6E1;
+  --green: #4A7C59;
+  --green-light: #E8F0EA;
+  --green-soft: #D4E4D8;
+  --gold: #D4A843;
+  --gold-light: #FFF8E7;
+  --warm: #F9F3E8;
+  --blue-light: #E4EEF5;
+  --peach: #F5EBE0;
+  --dark: #1A1A18;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-font-smoothing: antialiased; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;}
+button{font-family:var(--sans);cursor:pointer;}
 
-/* Header */
-.header { padding: 32px 24px 20px; border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 100; }
-.header-inner { max-width: 640px; margin: 0 auto; }
-.header-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
-.header h1 { font-family: var(--serif); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-.header .church { font-family: var(--serif); font-size: 13px; font-style: italic; color: var(--muted); }
-.progress-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
-.progress-track { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.4s ease; }
-.progress-label { font-size: 12px; font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 72px; text-align: right; }
+/* ─── HEADER ─── */
+.header{padding:28px 20px 20px;position:sticky;top:0;z-index:100;background:var(--bg);}
+.header-inner{max-width:560px;margin:0 auto;}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.header h1{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-0.01em;line-height:1.1;}
+.header .tag{font-size:11px;font-weight:600;color:var(--sub);letter-spacing:0.05em;text-transform:uppercase;background:var(--card);padding:5px 10px;border-radius:20px;border:1px solid var(--line);}
 
-/* Content */
-.content { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+/* Progress card */
+.progress-card{background:var(--card);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);}
+.progress-ring{position:relative;width:48px;height:48px;flex-shrink:0;}
+.progress-ring svg{transform:rotate(-90deg);}
+.progress-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green);}
+.progress-meta{flex:1;}
+.progress-meta .label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.progress-meta .detail{font-size:12px;color:var(--sub);}
+
+/* ─── CONTENT ─── */
+.content{max-width:560px;margin:0 auto;padding:0 20px;}
 
 /* Toolbar */
-.toolbar { padding: 16px 0; border-bottom: 1px solid var(--line); }
-.toolbar-btns { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.btn { font-family: var(--sans); font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 6px; cursor: pointer; border: 1px solid #C8C4BC; background: #FFF; color: var(--text); transition: background 0.15s; }
-.btn:hover { background: var(--hover); }
-.btn-green { border: none; background: var(--green); color: #FFF; font-weight: 600; }
-.btn-green:hover { background: var(--green-dark); }
-.btn-link { border: none; background: transparent; color: var(--muted); text-decoration: underline; font-size: 12px; padding: 7px 10px; }
-.sel-info { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: italic; }
+.tools{padding:16px 0;display:flex;gap:8px;flex-wrap:wrap;}
+.chip{font-size:12px;font-weight:600;padding:8px 14px;border-radius:20px;border:1px solid var(--line);background:var(--card);color:var(--text);transition:all 0.15s;}
+.chip:hover{background:var(--bg);border-color:#ccc;}
+.chip-green{border:none;background:var(--green);color:#fff;}
+.chip-green:hover{background:var(--green);opacity:0.9;}
+.chip-ghost{border:none;background:none;color:var(--sub);text-decoration:underline;font-weight:500;padding:8px 10px;}
+.sel-info{font-size:12px;color:var(--sub);padding:0 0 12px;font-style:italic;}
 
-/* Summary */
-.summary { margin: 20px 0; padding: 20px; background: #FFF; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.summary h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; }
-.summary-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
-.summary-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
-.summary-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: var(--bg); border-radius: 6px; gap: 12px; margin-bottom: 6px; }
-.summary-book { font-family: var(--serif); font-weight: 600; font-size: 15px; }
-.summary-refs { font-size: 13px; color: var(--muted); margin-left: 8px; word-break: break-word; }
-.summary-listen { font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 5px; background: var(--green); color: #FFF; border: none; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
-.summary-listen:hover { background: var(--green-dark); }
-.summary-footer { font-size: 11px; color: var(--faint); margin-top: 16px; line-height: 1.5; }
+/* ─── SUMMARY CARD ─── */
+.summary-card{background:var(--warm);border-radius:var(--radius);padding:20px;margin-bottom:20px;}
+.summary-card h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:4px;}
+.summary-sub{font-size:13px;color:var(--sub);margin-bottom:16px;}
+.summary-head{display:flex;align-items:baseline;justify-content:space-between;}
+.summary-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--card);border-radius:var(--radius-sm);margin-bottom:6px;}
+.summary-book{font-family:var(--serif);font-size:16px;flex-shrink:0;}
+.summary-refs{font-size:12px;color:var(--sub);flex:1;min-width:0;word-break:break-word;}
+.listen-chip{font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;background:var(--green);color:#fff;border:none;display:flex;align-items:center;gap:4px;flex-shrink:0;transition:opacity 0.15s;}
+.listen-chip:hover{opacity:0.85;}
+.summary-footer{font-size:11px;color:var(--faint);margin-top:14px;}
 
-/* Month nav */
-.month-nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 12px; }
-.month-nav h2 { font-family: var(--serif); font-size: 20px; font-weight: 600; }
-.month-btn { font-family: var(--sans); font-size: 18px; border: none; background: none; cursor: pointer; padding: 4px 8px; color: var(--text); }
-.month-btn:disabled { color: #D5D2CC; cursor: default; }
+/* ─── MONTH NAV ─── */
+.month-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0 14px;}
+.month-nav h2{font-family:var(--serif);font-size:24px;font-weight:400;}
+.month-btn{font-size:20px;border:none;background:var(--card);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text);border:1px solid var(--line);transition:all 0.15s;}
+.month-btn:hover{background:var(--line);}
+.month-btn:disabled{color:var(--line);border-color:transparent;background:none;cursor:default;}
 
-/* Day list */
-.day { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; margin-bottom: 2px; border-radius: 8px; border: 1px solid transparent; transition: all 0.15s; }
-.day.today { background: var(--warm); border-color: #E5D9B3; }
-.day.selected { background: var(--sel); }
-.day.bound { border-color: var(--green); }
-.day.now-playing { background: #EBF0EB; }
+/* ─── DAY LIST ─── */
+.day{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin-bottom:4px;border-radius:var(--radius-sm);border:1.5px solid transparent;transition:all 0.12s;}
+.day.today{background:var(--gold-light);border-color:#E8DFC0;}
+.day.selected{background:var(--green-light);}
+.day.bound{border-color:var(--green);}
+.day.now-playing{background:var(--blue-light);}
+.day:hover{background:var(--card);}
 
-.checkbox { width: 22px; height: 22px; min-width: 22px; border-radius: 5px; border: 1.5px solid #C8C4BC; background: #FFF; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 1px; padding: 0; transition: all 0.15s; }
-.checkbox.done { border: none; background: var(--green); }
+.cb{width:22px;height:22px;min-width:22px;border-radius:6px;border:1.5px solid #C8C5BC;background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;padding:0;transition:all 0.12s;}
+.cb.done{border:none;background:var(--green);}
 
-.day-content { flex: 1; min-width: 0; cursor: pointer; }
-.day-num { font-variant-numeric: tabular-nums; font-size: 12px; font-weight: 600; color: var(--faint); min-width: 22px; }
-.day-today-badge { font-size: 10px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-left: 8px; }
-.day-reading { font-family: var(--serif); font-size: 15px; line-height: 1.45; }
-.day-reading.done { color: var(--faint); text-decoration: line-through; text-decoration-color: #D5D2CC; }
+.day-body{flex:1;min-width:0;cursor:pointer;}
+.day-meta{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+.day-num{font-size:12px;font-weight:700;color:var(--faint);min-width:22px;font-variant-numeric:tabular-nums;}
+.day-badge{font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;background:rgba(212,168,67,0.15);padding:2px 7px;border-radius:10px;}
+.day-text{font-size:14px;line-height:1.5;color:var(--text);font-weight:400;letter-spacing:0.01em;}
+.day-text.done{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--line);}
 
-.play-btn { border: none; background: none; cursor: pointer; padding: 4px 2px; margin-top: 1px; flex-shrink: 0; display: flex; align-items: center; }
+.play-btn{border:none;background:var(--green-light);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0;transition:all 0.15s;padding:0;}
+.play-btn:hover{background:var(--green-soft);}
 
-/* Sticky player */
-.player { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--dark); color: #FFF; box-shadow: 0 -4px 20px rgba(0,0,0,0.25); padding-bottom: env(safe-area-inset-bottom, 0px); }
-.player-inner { max-width: 640px; margin: 0 auto; padding: 12px 20px 14px; }
-.player-row { display: flex; align-items: center; gap: 12px; }
-.player-btn { width: 40px; height: 40px; border-radius: 20px; border: none; background: var(--green); color: #FFF; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; }
-.player-btn.error { background: var(--muted); }
-.player-info { flex: 1; min-width: 0; }
-.player-title { font-size: 14px; font-family: var(--serif); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.player-progress { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
-.player-time { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 32px; }
-.player-bar { flex: 1; height: 4px; background: var(--dark-subtle); border-radius: 2px; cursor: pointer; position: relative; overflow: hidden; }
-.player-bar-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.15s linear; }
-.player-error { font-size: 12px; margin-top: 4px; }
-.player-error span { color: #E88; }
-.player-error a { color: #8CB892; text-decoration: underline; }
-.player-skip { border: none; background: none; color: var(--faint); cursor: pointer; padding: 4px; font-size: 18px; flex-shrink: 0; }
-.player-close { border: none; background: none; color: #6B6860; cursor: pointer; padding: 4px; font-size: 16px; flex-shrink: 0; }
-.player-queue { font-size: 11px; color: #6B6860; margin-top: 6px; padding-left: 52px; }
+/* ─── STICKY PLAYER ─── */
+.player{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--dark);color:#fff;padding:0 0 env(safe-area-inset-bottom,0px);box-shadow:0 -2px 24px rgba(0,0,0,0.2);}
+.player-inner{max-width:560px;margin:0 auto;padding:14px 20px 16px;}
+.player-row{display:flex;align-items:center;gap:12px;}
+.player-btn{width:44px;height:44px;border-radius:50%;border:none;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;transition:opacity 0.15s;}
+.player-btn:hover{opacity:0.85;}
+.player-btn.err{background:#555;}
+.player-info{flex:1;min-width:0;}
+.player-title{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-progress{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.player-time{font-size:11px;color:#888;font-variant-numeric:tabular-nums;min-width:34px;}
+.player-bar{flex:1;height:4px;background:#333;border-radius:2px;cursor:pointer;position:relative;overflow:hidden;}
+.player-fill{height:100%;background:var(--green);border-radius:2px;transition:width 0.15s linear;}
+.player-err{font-size:12px;margin-top:4px;}
+.player-err span{color:#E88;}
+.player-err a{color:#8CB892;text-decoration:underline;}
+.player-skip,.player-close{border:none;background:none;color:#777;cursor:pointer;padding:4px;flex-shrink:0;font-size:18px;}
+.player-close{font-size:16px;}
+.player-queue{font-size:11px;color:#555;margin-top:6px;padding-left:56px;}
 
-/* Toast */
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--dark); color: #FFF; font-family: var(--sans); font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 200; white-space: nowrap; }
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;font-size:13px;font-weight:500;padding:10px 20px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,0.2);z-index:200;white-space:nowrap;}
 
-/* Animations */
-@keyframes spin { to { transform: rotate(360deg); } }
-@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-.shimmer { position: absolute; top: 0; left: 0; right: 0; height: 100%; background: linear-gradient(90deg, transparent, rgba(107,143,113,0.5), transparent); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 2px; }
-.spinner { animation: spin 1s linear infinite; }
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.shimmer{position:absolute;top:0;left:0;right:0;height:100%;background:linear-gradient(90deg,transparent,rgba(74,124,89,0.4),transparent);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:2px;}
+.spinner{animation:spin 1s linear infinite;}
 </style>
 </head>
 <body>
@@ -126,21 +139,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); min-
 <div id="app"></div>
 
 <script>
-// ─── DATA ───
-const PLAN = [
-  {m:1,d:1,r:"GEN 1; PSALM 104; 1 JOHN 1"},{m:1,d:2,r:"GEN 2–3; 1 JN 2"},{m:1,d:3,r:"GEN 4–5; 1 JN 3"},{m:1,d:4,r:"GEN 6–8; 1 JN 4"},{m:1,d:5,r:"PS 8; GEN 9–10; 1 JN 5"},{m:1,d:6,r:"GEN 11–13; GALATIANS 1"},{m:1,d:7,r:"GEN 14–17; GAL 2"},{m:1,d:8,r:"GEN 18–19; GAL 3"},{m:1,d:9,r:"GEN 20–21; GAL 4"},{m:1,d:10,r:"GEN 22–23; GAL 5; PS 139"},{m:1,d:11,r:"GEN 24; GAL 6"},{m:1,d:12,r:"GEN 25–26; MATTHEW 1"},{m:1,d:13,r:"GEN 27–28; MT 2"},{m:1,d:14,r:"PS 127; GEN 29–30; MT 3"},{m:1,d:15,r:"GEN 31; MT 4"},{m:1,d:16,r:"GEN 32; MT 5"},{m:1,d:17,r:"PS 128; GEN 33–34; MT 6"},{m:1,d:18,r:"GEN 35–36; MT 7"},{m:1,d:19,r:"GEN 37; MT 8"},{m:1,d:20,r:"GEN 38; MT 9; PS 146"},{m:1,d:21,r:"GEN 39–40; MT 10"},{m:1,d:22,r:"GEN 41; MT 11"},{m:1,d:23,r:"GEN 42; MT 12"},{m:1,d:24,r:"GEN 43; MT 13"},{m:1,d:25,r:"GEN 44; MT 14"},{m:1,d:26,r:"GEN 45; PS 105; MT 15"},{m:1,d:27,r:"GEN 46; MALACHI 1–2; MT 16"},{m:1,d:28,r:"GEN 47–48; MT 17; MAL 3–4"},{m:1,d:29,r:"GEN 49–50; MT 18; PS 131"},{m:1,d:30,r:"EXODUS 1–2; MT 19"},{m:1,d:31,r:"EX 3–4; MT 20"},
-  {m:2,d:1,r:"EX 5–6; MT 21"},{m:2,d:2,r:"EX 7–8; MT 22"},{m:2,d:3,r:"EX 9; MT 23"},{m:2,d:4,r:"EX 10–11; MT 24"},{m:2,d:5,r:"EX 12; MT 25"},{m:2,d:6,r:"EX 13; MT 26"},{m:2,d:7,r:"EX 14; MT 27"},{m:2,d:8,r:"PS 114; EX 15–16; MT 28"},{m:2,d:9,r:"PS 95; EX 17–18; 1 PT 1"},{m:2,d:10,r:"EX 19–20; 1 PT 2"},{m:2,d:11,r:"EX 21–22; 1 PT 3"},{m:2,d:12,r:"EX 23–24; 1 PT 4"},{m:2,d:13,r:"EX 25–26; 1 PT 5"},{m:2,d:14,r:"EX 27–28; HEBREWS 1; PS 45"},{m:2,d:15,r:"EX 29–30; HEB 2"},{m:2,d:16,r:"EX 31–32; HEB 3"},{m:2,d:17,r:"EX 33–34; HEB 4"},{m:2,d:18,r:"EX 35–36; HEB 5"},{m:2,d:19,r:"EX 37–38; HEB 6"},{m:2,d:20,r:"EX 39–40; HEB 7"},{m:2,d:21,r:"LEV 1–3; PS 110; HEB 8"},{m:2,d:22,r:"PS 19; LEV 4–5; HEB 9"},{m:2,d:23,r:"LEV 6–7; HEB 10"},{m:2,d:24,r:"PS 133; LEV 8; HEB 11"},{m:2,d:25,r:"LEV 9–10; HEB 12"},{m:2,d:26,r:"LEV 11–12; HEB 13"},{m:2,d:27,r:"LEV 13; 1 CORINTHIANS 1"},{m:2,d:28,r:"LEV 14; 1 COR 2"},
-  {m:3,d:1,r:"LEV 15; 1 COR 3; PS 62"},{m:3,d:2,r:"LEV 16–17; 1 COR 4"},{m:3,d:3,r:"LEV 18–19; 1 COR 5"},{m:3,d:4,r:"LEV 20–21; 1 COR 6"},{m:3,d:5,r:"LEV 22; 1 COR 7"},{m:3,d:6,r:"LEV 23–24; 1 COR 8"},{m:3,d:7,r:"LEV 25; 1 COR 9"},{m:3,d:8,r:"LEV 26; 1 COR 10"},{m:3,d:9,r:"LEV 27; 1 COR 11"},{m:3,d:10,r:"NUMBERS 1; 1 COR 12"},{m:3,d:11,r:"NUM 2–3; 1 COR 13"},{m:3,d:12,r:"NUM 4; 1 COR 14"},{m:3,d:13,r:"NUM 5; 1 COR 15"},{m:3,d:14,r:"NUM 6; PS 116; 1 COR 16"},{m:3,d:15,r:"NUM 7; PS 47"},{m:3,d:16,r:"NUM 8–9; PS 99"},{m:3,d:17,r:"NUM 10; PS 68"},{m:3,d:18,r:"NUM 11; PS 78"},{m:3,d:19,r:"NUM 12–13; PS 106"},{m:3,d:20,r:"NUM 14; JUDE 1"},{m:3,d:21,r:"NUM 15; MARK 1"},{m:3,d:22,r:"NUM 16; MK 2"},{m:3,d:23,r:"NUM 17–18; MK 3"},{m:3,d:24,r:"NUM 19–20; MK 4"},{m:3,d:25,r:"NUM 21; PS 135; MK 5"},{m:3,d:26,r:"NUM 22; MK 6"},{m:3,d:27,r:"NUM 23–24; MK 7"},{m:3,d:28,r:"NUM 25; MK 8; PS 103"},{m:3,d:29,r:"NUM 26; MK 9"},{m:3,d:30,r:"NUM 27; MK 10"},{m:3,d:31,r:"NUM 28–29; MK 11"},
-  {m:4,d:1,r:"NUM 30; PS 61; MK 12"},{m:4,d:2,r:"NUM 31; MK 13"},{m:4,d:3,r:"NUM 32; MK 14"},{m:4,d:4,r:"NUM 33; MK 15"},{m:4,d:5,r:"NUM 34–35; MK 16; PS 98"},{m:4,d:6,r:"NUM 36; DEUT 1; PS 107"},{m:4,d:7,r:"DT 2–3; PS 90"},{m:4,d:8,r:"PS 97; DT 4–5"},{m:4,d:9,r:"DT 6–7; EPHESIANS 1"},{m:4,d:10,r:"DT 8–10; EPH 2"},{m:4,d:11,r:"DT 11–12; EPH 3"},{m:4,d:12,r:"DT 13–14; EPH 4"},{m:4,d:13,r:"DT 15–16; EPH 5"},{m:4,d:14,r:"DT 17–19; EPH 6"},{m:4,d:15,r:"PS 20; DT 20–22"},{m:4,d:16,r:"DT 23–24; RUTH 1–2"},{m:4,d:17,r:"PS 4; RUTH 3–4; DT 25–26"},{m:4,d:18,r:"DT 27–28; PS 112"},{m:4,d:19,r:"DT 29–30; TITUS 1"},{m:4,d:20,r:"DT 31–32; TITUS 2"},{m:4,d:21,r:"PS 65; DT 33–34; TITUS 3"},{m:4,d:22,r:"PS 1; JOSHUA 1–3; 2 COR 1"},{m:4,d:23,r:"JOSH 4–6; 2 COR 2"},{m:4,d:24,r:"JOSH 7–8; 2 COR 3"},{m:4,d:25,r:"JOSH 9–10; 2 COR 4"},{m:4,d:26,r:"JOSH 11–13; 2 COR 5"},{m:4,d:27,r:"JOSH 14–15; 2 COR 6"},{m:4,d:28,r:"JOSH 16–18; PS 80; 2 COR 7"},{m:4,d:29,r:"JOSH 19–20; 2 COR 8"},{m:4,d:30,r:"JOSH 21–22; 2 COR 9"},
-  {m:5,d:1,r:"JOSH 23–24; 2 COR 10"},{m:5,d:2,r:"JOB 1–3; 2 COR 11"},{m:5,d:3,r:"PS 39; JOB 4–5; 2 COR 12"},{m:5,d:4,r:"JOB 6–8; 2 COR 13"},{m:5,d:5,r:"JOB 9–10; PROVERBS 1"},{m:5,d:6,r:"JOB 11–13; PROV 2"},{m:5,d:7,r:"JOB 14–15; PROV 3"},{m:5,d:8,r:"JOB 16–18; PROV 4"},{m:5,d:9,r:"PS 17; JOB 19–20; PROV 5"},{m:5,d:10,r:"JOB 21–22; PROV 6"},{m:5,d:11,r:"JOB 23–26; PROV 7"},{m:5,d:12,r:"JOB 27–28; PROV 8"},{m:5,d:13,r:"JOB 29–30; PROV 9; PS 141"},{m:5,d:14,r:"JOB 31–32; PROV 10"},{m:5,d:15,r:"JOB 33–34; PROV 11"},{m:5,d:16,r:"JOB 35–37; PROV 12"},{m:5,d:17,r:"JOB 38; PS 148; PROV 13"},{m:5,d:18,r:"JOB 39–40; PROV 14"},{m:5,d:19,r:"JOB 41–42; PS 30; PROV 15"},{m:5,d:20,r:"MICAH 1–4; PROV 16"},{m:5,d:21,r:"MICAH 5–7; PROV 17"},{m:5,d:22,r:"SONG OF SONGS 1–4; PROV 18"},{m:5,d:23,r:"SONG 5–8; PROV 19"},{m:5,d:24,r:"EZRA 1; PROV 20; PS 94"},{m:5,d:25,r:"EZRA 2; PROV 21"},{m:5,d:26,r:"EZRA 3–4; PS 42–43; PROV 22"},{m:5,d:27,r:"HAGGAI 1–2; EZRA 5; PROV 23"},{m:5,d:28,r:"EZRA 6; PROV 24; PS 37"},{m:5,d:29,r:"EZRA 7–8; PROV 25"},{m:5,d:30,r:"EZRA 9–10; PROV 26"},{m:5,d:31,r:"ECCLESIASTES 1–2; PROV 27"},
-  {m:6,d:1,r:"PS 49; ECCL 3–4; PROV 28"},{m:6,d:2,r:"ECCL 5–6; PROV 29; PS 50"},{m:6,d:3,r:"ECCL 7–8; PROV 30"},{m:6,d:4,r:"ECCL 9–12; PROV 31"},{m:6,d:5,r:"PS 119:1–88"},{m:6,d:6,r:"PS 119:89–176"},{m:6,d:7,r:"JUDGES 1–2; PS 81"},{m:6,d:8,r:"JDG 3–4; PS 9"},{m:6,d:9,r:"JDG 5–6; PS 44"},{m:6,d:10,r:"JDG 7–8; 2 THESSALONIANS 1"},{m:6,d:11,r:"JDG 9; 2 THESS 2"},{m:6,d:12,r:"JDG 10–11; 2 THESS 3"},{m:6,d:13,r:"JDG 12–14; 1 TIMOTHY 1"},{m:6,d:14,r:"JDG 15–17; 1 TIM 2"},{m:6,d:15,r:"JDG 18–19; 1 TIM 3"},{m:6,d:16,r:"JDG 20–21; 1 TIM 4"},{m:6,d:17,r:"1 SAMUEL 1–2; PS 113; 1 TIM 5"},{m:6,d:18,r:"1 SAM 3–5; 1 TIM 6"},{m:6,d:19,r:"PS 108; 1 SAM 6–8"},{m:6,d:20,r:"1 SAM 9–11; PS 117–118"},{m:6,d:21,r:"PS 29; 1 SAM 12–13"},{m:6,d:22,r:"PS 3; 1 SAM 14"},{m:6,d:23,r:"1 SAM 15–16; PS 147"},{m:6,d:24,r:"PS 33; 1 SAM 17"},{m:6,d:25,r:"1 SAM 18–19; PS 59"},{m:6,d:26,r:"1 SAM 20–21; PS 56"},{m:6,d:27,r:"PS 52; 1 SAM 22–23; PS 31"},{m:6,d:28,r:"PS 57; PS 142; 1 SAM 24–25"},{m:6,d:29,r:"PS 54; 1 SAM 26–28"},{m:6,d:30,r:"PS 140; 1 SAM 29–31"},
-  {m:7,d:1,r:"2 SAMUEL 1–2; PS 86"},{m:7,d:2,r:"PS 120; 2 SAM 3–4; PS 10"},{m:7,d:3,r:"PS 27; 2 SAM 5–6; PS 144"},{m:7,d:4,r:"2 SAM 7; PS 89"},{m:7,d:5,r:"PS 60; 2 SAM 8–10"},{m:7,d:6,r:"2 SAM 11–12; PS 51"},{m:7,d:7,r:"PS 36; 2 SAM 13–14"},{m:7,d:8,r:"2 SAM 15–16; PS 70–71"},{m:7,d:9,r:"PS 63; 2 SAM 17–18"},{m:7,d:10,r:"PS 5; 2 SAM 19–20"},{m:7,d:11,r:"2 SAM 21–22; PS 91"},{m:7,d:12,r:"2 SAM 23–24; PS 130"},{m:7,d:13,r:"1 KINGS 1; PS 28"},{m:7,d:14,r:"PS 55; 1 KI 2"},{m:7,d:15,r:"1 KI 3–4; PS 111"},{m:7,d:16,r:"1 KI 5–6; PS 138"},{m:7,d:17,r:"1 KI 7; PS 48"},{m:7,d:18,r:"1 KI 8; PS 96"},{m:7,d:19,r:"1 KI 9–10; JAMES 1"},{m:7,d:20,r:"1 KI 11–12; JAS 2"},{m:7,d:21,r:"1 KI 13–14; JAS 3"},{m:7,d:22,r:"1 KI 15–16; JAS 4"},{m:7,d:23,r:"1 KI 17–18; JAS 5"},{m:7,d:24,r:"PS 115; 1 KI 19–20"},{m:7,d:25,r:"1 KI 21–22; 2 JOHN 1"},{m:7,d:26,r:"2 KINGS 1–2; PS 35"},{m:7,d:27,r:"2 KI 3–4; PS 136"},{m:7,d:28,r:"2 KI 5–6; PS 40"},{m:7,d:29,r:"PS 34; 2 KI 7–8"},{m:7,d:30,r:"PS 58; 2 KI 9–10"},{m:7,d:31,r:"2 KI 11–12; JOHN 1"},
-  {m:8,d:1,r:"2 KI 13–14; JN 2"},{m:8,d:2,r:"2 KI 15–16; JN 3"},{m:8,d:3,r:"2 KI 17; JN 4"},{m:8,d:4,r:"2 KI 18; JN 5"},{m:8,d:5,r:"2 KI 19; JN 6"},{m:8,d:6,r:"2 KI 20; JN 7"},{m:8,d:7,r:"2 KI 21; JN 8"},{m:8,d:8,r:"2 KI 22–23; JN 9"},{m:8,d:9,r:"2 KI 24–25; JN 10; PS 23"},{m:8,d:10,r:"1 CHRONICLES 1; JN 11"},{m:8,d:11,r:"1 CHR 2; JN 12"},{m:8,d:12,r:"1 CHR 3; JN 13; PS 41"},{m:8,d:13,r:"1 CHR 4–5; JN 14"},{m:8,d:14,r:"1 CHR 6; JN 15"},{m:8,d:15,r:"1 CHR 7; JN 16; PS 143"},{m:8,d:16,r:"1 CHR 8–9; JN 17"},{m:8,d:17,r:"1 CHR 10–11; JN 18"},{m:8,d:18,r:"1 CHR 12; JN 19; PS 22"},{m:8,d:19,r:"1 CHR 13–15; PS 150; JN 20"},{m:8,d:20,r:"1 CHR 16–17; JN 21"},{m:8,d:21,r:"1 CHR 18–19; PS 18"},{m:8,d:22,r:"1 CHR 20–22; PS 72"},{m:8,d:23,r:"PS 134; 1 CHR 23–25"},{m:8,d:24,r:"1 CHR 26–27; PHIL 1"},{m:8,d:25,r:"1 CHR 28–29; 2 CHR 1; PHIL 2"},{m:8,d:26,r:"2 CHR 2–5; PS 24; PHIL 3"},{m:8,d:27,r:"PS 132; 2 CHR 6; PHIL 4"},{m:8,d:28,r:"2 CHR 7–9; PS 21"},{m:8,d:29,r:"2 CHR 10–12; PS 11–12"},{m:8,d:30,r:"2 CHR 13–15; PS 101"},{m:8,d:31,r:"2 CHR 16–19; 1 THES 1"},
-  {m:9,d:1,r:"PS 124; 2 CHR 20–21; 1 THES 2"},{m:9,d:2,r:"2 CHR 22–24; 1 THESS 3"},{m:9,d:3,r:"2 CHR 25–27; 1 THESS 4"},{m:9,d:4,r:"2 CHR 28–29; 1 THESS 5"},{m:9,d:5,r:"2 CHR 30–31; PS 66"},{m:9,d:6,r:"NAHUM 1–3; 2 CHR 32–33"},{m:9,d:7,r:"2 CHR 34; ZEPHANIAH 1–3"},{m:9,d:8,r:"2 CHR 35–36; PS 79"},{m:9,d:9,r:"JEREMIAH 1–2; ROMANS 1"},{m:9,d:10,r:"JER 3–4; ROM 2"},{m:9,d:11,r:"JER 5–6; ROM 3; PS 53"},{m:9,d:12,r:"JER 7–8; ROM 4"},{m:9,d:13,r:"JER 9–11; ROM 5"},{m:9,d:14,r:"JER 12–14; ROM 6"},{m:9,d:15,r:"JER 15–16; ROM 7; PS 38"},{m:9,d:16,r:"JER 17–18; ROM 8"},{m:9,d:17,r:"JER 19–21; ROM 9"},{m:9,d:18,r:"PS 82; JER 22–23; ROM 10"},{m:9,d:19,r:"JER 24–25; ROM 11"},{m:9,d:20,r:"JER 26–28; ROM 12"},{m:9,d:21,r:"3 JOHN 1; JER 29–30; ROM 13"},{m:9,d:22,r:"PS 25; JER 31; ROM 14"},{m:9,d:23,r:"JER 32; ROM 15"},{m:9,d:24,r:"JER 33–34; ROM 16"},{m:9,d:25,r:"JER 35–37; 2 TIMOTHY 1"},{m:9,d:26,r:"PS 69; JER 38; 2 TIM 2"},{m:9,d:27,r:"JER 39–42; 2 TIM 3"},{m:9,d:28,r:"JER 43–46; 2 TIM 4"},{m:9,d:29,r:"PS 75; JER 47–48"},{m:9,d:30,r:"PS 83; JER 49; OBADIAH 1"},
-  {m:10,d:1,r:"PS 125–126; JER 50; PS 129"},{m:10,d:2,r:"JER 51; PS 149"},{m:10,d:3,r:"JER 52; PS 74"},{m:10,d:4,r:"LAMENTATIONS 1–2; PS 77"},{m:10,d:5,r:"PS 88; LAM 3"},{m:10,d:6,r:"LAM 4–5; PS 102"},{m:10,d:7,r:"HOSEA 1–5; PS 32"},{m:10,d:8,r:"HOS 6–9; PS 16"},{m:10,d:9,r:"HOS 10–14; PS 85"},{m:10,d:10,r:"HABAKKUK 1–3; PS 46"},{m:10,d:11,r:"ZECHARIAH 1–5; 2 PETER 1"},{m:10,d:12,r:"ZECH 6–9; 2 PT 2"},{m:10,d:13,r:"ZECH 10–14; 2 PT 3"},{m:10,d:14,r:"EZEKIEL 1–3; REVELATION 1"},{m:10,d:15,r:"EZEK 4–6; REV 2"},{m:10,d:16,r:"EZEK 7–9; REV 3"},{m:10,d:17,r:"EZEK 10–12; REV 4; PS 93"},{m:10,d:18,r:"EZEK 13–15; REV 5"},{m:10,d:19,r:"EZEK 16; REV 6"},{m:10,d:20,r:"EZEK 17–18; REV 7; PS 121"},{m:10,d:21,r:"EZEK 19–20; REV 8"},{m:10,d:22,r:"EZEK 21–22; REV 9"},{m:10,d:23,r:"EZEK 23–24; REV 10"},{m:10,d:24,r:"PS 137; EZEK 25–26; REV 11"},{m:10,d:25,r:"EZEK 27–28; REV 12"},{m:10,d:26,r:"EZEK 29–30; REV 13"},{m:10,d:27,r:"EZEK 31–32; REV 14"},{m:10,d:28,r:"EZEK 33–34; PS 100; REV 15"},{m:10,d:29,r:"EZEK 35–36; REV 16"},{m:10,d:30,r:"EZEK 37–38; REV 17"},{m:10,d:31,r:"EZEK 39–40; REV 18"},
-  {m:11,d:1,r:"EZEK 41–42; REV 19"},{m:11,d:2,r:"EZEK 43–44; REV 20"},{m:11,d:3,r:"EZEK 45–46; REV 21"},{m:11,d:4,r:"EZEK 47–48; REV 22"},{m:11,d:5,r:"ISAIAH 1–4; PS 87"},{m:11,d:6,r:"ISA 5–7; COLOSSIANS 1"},{m:11,d:7,r:"ISA 8–11; COL 2"},{m:11,d:8,r:"PS 84; ISA 12–14; COL 3"},{m:11,d:9,r:"ISA 15–18; COL 4"},{m:11,d:10,r:"ISA 19; LUKE 1"},{m:11,d:11,r:"ISA 20–22; LK 2"},{m:11,d:12,r:"ISA 23–24; LK 3"},{m:11,d:13,r:"ISA 25–26; LK 4"},{m:11,d:14,r:"ISA 27–28; LK 5"},{m:11,d:15,r:"ISA 29; LK 6"},{m:11,d:16,r:"ISA 30; LK 7"},{m:11,d:17,r:"ISA 31–32; LK 8"},{m:11,d:18,r:"ISA 33; PS 15; LK 9"},{m:11,d:19,r:"ISA 34–36; LK 10"},{m:11,d:20,r:"ISA 37; PS 76; LK 11"},{m:11,d:21,r:"PS 6; ISA 38–39; LK 12"},{m:11,d:22,r:"ISA 40–41; LK 13"},{m:11,d:23,r:"ISA 42–43; LK 14"},{m:11,d:24,r:"ISA 44–45; LK 15"},{m:11,d:25,r:"ISA 46–48; LK 16"},{m:11,d:26,r:"PS 67; ISA 49–50; LK 17"},{m:11,d:27,r:"ISA 51–53; LK 18"},{m:11,d:28,r:"ISA 54–56; LK 19"},{m:11,d:29,r:"ISA 57–58; LK 20"},{m:11,d:30,r:"PS 14; ISA 59–60; LK 21"},
-  {m:12,d:1,r:"ISA 61–62; LK 22"},{m:12,d:2,r:"ISA 63–64; LK 23"},{m:12,d:3,r:"ISA 65; LK 24"},{m:12,d:4,r:"ISA 66; PS 109; ACTS 1"},{m:12,d:5,r:"JOEL 1–2; ACTS 2"},{m:12,d:6,r:"PS 7; JOEL 3; ACTS 3"},{m:12,d:7,r:"NEHEMIAH 1–2; ACTS 4; PS 2"},{m:12,d:8,r:"NEH 3; PS 122; ACTS 5"},{m:12,d:9,r:"NEH 4–6; PS 13; ACTS 6"},{m:12,d:10,r:"NEH 7; ACTS 7"},{m:12,d:11,r:"NEH 8–9; ACTS 8"},{m:12,d:12,r:"NEH 10; ACTS 9"},{m:12,d:13,r:"NEH 11; ACTS 10"},{m:12,d:14,r:"NEH 12; ACTS 11"},{m:12,d:15,r:"NEH 13; PS 26; ACTS 12"},{m:12,d:16,r:"AMOS 1–3; ACTS 13"},{m:12,d:17,r:"AMOS 4–6; PS 123; ACTS 14"},{m:12,d:18,r:"AMOS 7–9; ACTS 15"},{m:12,d:19,r:"PS 92; ACTS 16; PHILEMON 1"},{m:12,d:20,r:"JONAH 1–4; ACTS 17"},{m:12,d:21,r:"ESTHER 1–2; ACTS 18"},{m:12,d:22,r:"ESTH 3–5; ACTS 19"},{m:12,d:23,r:"ESTH 6–7; PS 73; ACTS 20"},{m:12,d:24,r:"ESTH 8–10; ACTS 21"},{m:12,d:25,r:"DANIEL 1–2; ACTS 22"},{m:12,d:26,r:"DAN 3–4; ACTS 23"},{m:12,d:27,r:"DAN 5–6; PS 64; ACTS 24"},{m:12,d:28,r:"DAN 7–8; ACTS 25"},{m:12,d:29,r:"DAN 9–10; ACTS 26"},{m:12,d:30,r:"DAN 11; ACTS 27"},{m:12,d:31,r:"DAN 12; ACTS 28; PS 145"},
-];
+const PLAN=[{m:1,d:1,r:"GEN 1; PSALM 104; 1 JOHN 1"},{m:1,d:2,r:"GEN 2–3; 1 JN 2"},{m:1,d:3,r:"GEN 4–5; 1 JN 3"},{m:1,d:4,r:"GEN 6–8; 1 JN 4"},{m:1,d:5,r:"PS 8; GEN 9–10; 1 JN 5"},{m:1,d:6,r:"GEN 11–13; GALATIANS 1"},{m:1,d:7,r:"GEN 14–17; GAL 2"},{m:1,d:8,r:"GEN 18–19; GAL 3"},{m:1,d:9,r:"GEN 20–21; GAL 4"},{m:1,d:10,r:"GEN 22–23; GAL 5; PS 139"},{m:1,d:11,r:"GEN 24; GAL 6"},{m:1,d:12,r:"GEN 25–26; MATTHEW 1"},{m:1,d:13,r:"GEN 27–28; MT 2"},{m:1,d:14,r:"PS 127; GEN 29–30; MT 3"},{m:1,d:15,r:"GEN 31; MT 4"},{m:1,d:16,r:"GEN 32; MT 5"},{m:1,d:17,r:"PS 128; GEN 33–34; MT 6"},{m:1,d:18,r:"GEN 35–36; MT 7"},{m:1,d:19,r:"GEN 37; MT 8"},{m:1,d:20,r:"GEN 38; MT 9; PS 146"},{m:1,d:21,r:"GEN 39–40; MT 10"},{m:1,d:22,r:"GEN 41; MT 11"},{m:1,d:23,r:"GEN 42; MT 12"},{m:1,d:24,r:"GEN 43; MT 13"},{m:1,d:25,r:"GEN 44; MT 14"},{m:1,d:26,r:"GEN 45; PS 105; MT 15"},{m:1,d:27,r:"GEN 46; MALACHI 1–2; MT 16"},{m:1,d:28,r:"GEN 47–48; MT 17; MAL 3–4"},{m:1,d:29,r:"GEN 49–50; MT 18; PS 131"},{m:1,d:30,r:"EXODUS 1–2; MT 19"},{m:1,d:31,r:"EX 3–4; MT 20"},{m:2,d:1,r:"EX 5–6; MT 21"},{m:2,d:2,r:"EX 7–8; MT 22"},{m:2,d:3,r:"EX 9; MT 23"},{m:2,d:4,r:"EX 10–11; MT 24"},{m:2,d:5,r:"EX 12; MT 25"},{m:2,d:6,r:"EX 13; MT 26"},{m:2,d:7,r:"EX 14; MT 27"},{m:2,d:8,r:"PS 114; EX 15–16; MT 28"},{m:2,d:9,r:"PS 95; EX 17–18; 1 PT 1"},{m:2,d:10,r:"EX 19–20; 1 PT 2"},{m:2,d:11,r:"EX 21–22; 1 PT 3"},{m:2,d:12,r:"EX 23–24; 1 PT 4"},{m:2,d:13,r:"EX 25–26; 1 PT 5"},{m:2,d:14,r:"EX 27–28; HEBREWS 1; PS 45"},{m:2,d:15,r:"EX 29–30; HEB 2"},{m:2,d:16,r:"EX 31–32; HEB 3"},{m:2,d:17,r:"EX 33–34; HEB 4"},{m:2,d:18,r:"EX 35–36; HEB 5"},{m:2,d:19,r:"EX 37–38; HEB 6"},{m:2,d:20,r:"EX 39–40; HEB 7"},{m:2,d:21,r:"LEV 1–3; PS 110; HEB 8"},{m:2,d:22,r:"PS 19; LEV 4–5; HEB 9"},{m:2,d:23,r:"LEV 6–7; HEB 10"},{m:2,d:24,r:"PS 133; LEV 8; HEB 11"},{m:2,d:25,r:"LEV 9–10; HEB 12"},{m:2,d:26,r:"LEV 11–12; HEB 13"},{m:2,d:27,r:"LEV 13; 1 CORINTHIANS 1"},{m:2,d:28,r:"LEV 14; 1 COR 2"},{m:3,d:1,r:"LEV 15; 1 COR 3; PS 62"},{m:3,d:2,r:"LEV 16–17; 1 COR 4"},{m:3,d:3,r:"LEV 18–19; 1 COR 5"},{m:3,d:4,r:"LEV 20–21; 1 COR 6"},{m:3,d:5,r:"LEV 22; 1 COR 7"},{m:3,d:6,r:"LEV 23–24; 1 COR 8"},{m:3,d:7,r:"LEV 25; 1 COR 9"},{m:3,d:8,r:"LEV 26; 1 COR 10"},{m:3,d:9,r:"LEV 27; 1 COR 11"},{m:3,d:10,r:"NUMBERS 1; 1 COR 12"},{m:3,d:11,r:"NUM 2–3; 1 COR 13"},{m:3,d:12,r:"NUM 4; 1 COR 14"},{m:3,d:13,r:"NUM 5; 1 COR 15"},{m:3,d:14,r:"NUM 6; PS 116; 1 COR 16"},{m:3,d:15,r:"NUM 7; PS 47"},{m:3,d:16,r:"NUM 8–9; PS 99"},{m:3,d:17,r:"NUM 10; PS 68"},{m:3,d:18,r:"NUM 11; PS 78"},{m:3,d:19,r:"NUM 12–13; PS 106"},{m:3,d:20,r:"NUM 14; JUDE 1"},{m:3,d:21,r:"NUM 15; MARK 1"},{m:3,d:22,r:"NUM 16; MK 2"},{m:3,d:23,r:"NUM 17–18; MK 3"},{m:3,d:24,r:"NUM 19–20; MK 4"},{m:3,d:25,r:"NUM 21; PS 135; MK 5"},{m:3,d:26,r:"NUM 22; MK 6"},{m:3,d:27,r:"NUM 23–24; MK 7"},{m:3,d:28,r:"NUM 25; MK 8; PS 103"},{m:3,d:29,r:"NUM 26; MK 9"},{m:3,d:30,r:"NUM 27; MK 10"},{m:3,d:31,r:"NUM 28–29; MK 11"},{m:4,d:1,r:"NUM 30; PS 61; MK 12"},{m:4,d:2,r:"NUM 31; MK 13"},{m:4,d:3,r:"NUM 32; MK 14"},{m:4,d:4,r:"NUM 33; MK 15"},{m:4,d:5,r:"NUM 34–35; MK 16; PS 98"},{m:4,d:6,r:"NUM 36; DEUT 1; PS 107"},{m:4,d:7,r:"DT 2–3; PS 90"},{m:4,d:8,r:"PS 97; DT 4–5"},{m:4,d:9,r:"DT 6–7; EPHESIANS 1"},{m:4,d:10,r:"DT 8–10; EPH 2"},{m:4,d:11,r:"DT 11–12; EPH 3"},{m:4,d:12,r:"DT 13–14; EPH 4"},{m:4,d:13,r:"DT 15–16; EPH 5"},{m:4,d:14,r:"DT 17–19; EPH 6"},{m:4,d:15,r:"PS 20; DT 20–22"},{m:4,d:16,r:"DT 23–24; RUTH 1–2"},{m:4,d:17,r:"PS 4; RUTH 3–4; DT 25–26"},{m:4,d:18,r:"DT 27–28; PS 112"},{m:4,d:19,r:"DT 29–30; TITUS 1"},{m:4,d:20,r:"DT 31–32; TITUS 2"},{m:4,d:21,r:"PS 65; DT 33–34; TITUS 3"},{m:4,d:22,r:"PS 1; JOSHUA 1–3; 2 COR 1"},{m:4,d:23,r:"JOSH 4–6; 2 COR 2"},{m:4,d:24,r:"JOSH 7–8; 2 COR 3"},{m:4,d:25,r:"JOSH 9–10; 2 COR 4"},{m:4,d:26,r:"JOSH 11–13; 2 COR 5"},{m:4,d:27,r:"JOSH 14–15; 2 COR 6"},{m:4,d:28,r:"JOSH 16–18; PS 80; 2 COR 7"},{m:4,d:29,r:"JOSH 19–20; 2 COR 8"},{m:4,d:30,r:"JOSH 21–22; 2 COR 9"},{m:5,d:1,r:"JOSH 23–24; 2 COR 10"},{m:5,d:2,r:"JOB 1–3; 2 COR 11"},{m:5,d:3,r:"PS 39; JOB 4–5; 2 COR 12"},{m:5,d:4,r:"JOB 6–8; 2 COR 13"},{m:5,d:5,r:"JOB 9–10; PROVERBS 1"},{m:5,d:6,r:"JOB 11–13; PROV 2"},{m:5,d:7,r:"JOB 14–15; PROV 3"},{m:5,d:8,r:"JOB 16–18; PROV 4"},{m:5,d:9,r:"PS 17; JOB 19–20; PROV 5"},{m:5,d:10,r:"JOB 21–22; PROV 6"},{m:5,d:11,r:"JOB 23–26; PROV 7"},{m:5,d:12,r:"JOB 27–28; PROV 8"},{m:5,d:13,r:"JOB 29–30; PROV 9; PS 141"},{m:5,d:14,r:"JOB 31–32; PROV 10"},{m:5,d:15,r:"JOB 33–34; PROV 11"},{m:5,d:16,r:"JOB 35–37; PROV 12"},{m:5,d:17,r:"JOB 38; PS 148; PROV 13"},{m:5,d:18,r:"JOB 39–40; PROV 14"},{m:5,d:19,r:"JOB 41–42; PS 30; PROV 15"},{m:5,d:20,r:"MICAH 1–4; PROV 16"},{m:5,d:21,r:"MICAH 5–7; PROV 17"},{m:5,d:22,r:"SONG OF SONGS 1–4; PROV 18"},{m:5,d:23,r:"SONG 5–8; PROV 19"},{m:5,d:24,r:"EZRA 1; PROV 20; PS 94"},{m:5,d:25,r:"EZRA 2; PROV 21"},{m:5,d:26,r:"EZRA 3–4; PS 42–43; PROV 22"},{m:5,d:27,r:"HAGGAI 1–2; EZRA 5; PROV 23"},{m:5,d:28,r:"EZRA 6; PROV 24; PS 37"},{m:5,d:29,r:"EZRA 7–8; PROV 25"},{m:5,d:30,r:"EZRA 9–10; PROV 26"},{m:5,d:31,r:"ECCLESIASTES 1–2; PROV 27"},{m:6,d:1,r:"PS 49; ECCL 3–4; PROV 28"},{m:6,d:2,r:"ECCL 5–6; PROV 29; PS 50"},{m:6,d:3,r:"ECCL 7–8; PROV 30"},{m:6,d:4,r:"ECCL 9–12; PROV 31"},{m:6,d:5,r:"PS 119:1–88"},{m:6,d:6,r:"PS 119:89–176"},{m:6,d:7,r:"JUDGES 1–2; PS 81"},{m:6,d:8,r:"JDG 3–4; PS 9"},{m:6,d:9,r:"JDG 5–6; PS 44"},{m:6,d:10,r:"JDG 7–8; 2 THESSALONIANS 1"},{m:6,d:11,r:"JDG 9; 2 THESS 2"},{m:6,d:12,r:"JDG 10–11; 2 THESS 3"},{m:6,d:13,r:"JDG 12–14; 1 TIMOTHY 1"},{m:6,d:14,r:"JDG 15–17; 1 TIM 2"},{m:6,d:15,r:"JDG 18–19; 1 TIM 3"},{m:6,d:16,r:"JDG 20–21; 1 TIM 4"},{m:6,d:17,r:"1 SAMUEL 1–2; PS 113; 1 TIM 5"},{m:6,d:18,r:"1 SAM 3–5; 1 TIM 6"},{m:6,d:19,r:"PS 108; 1 SAM 6–8"},{m:6,d:20,r:"1 SAM 9–11; PS 117–118"},{m:6,d:21,r:"PS 29; 1 SAM 12–13"},{m:6,d:22,r:"PS 3; 1 SAM 14"},{m:6,d:23,r:"1 SAM 15–16; PS 147"},{m:6,d:24,r:"PS 33; 1 SAM 17"},{m:6,d:25,r:"1 SAM 18–19; PS 59"},{m:6,d:26,r:"1 SAM 20–21; PS 56"},{m:6,d:27,r:"PS 52; 1 SAM 22–23; PS 31"},{m:6,d:28,r:"PS 57; PS 142; 1 SAM 24–25"},{m:6,d:29,r:"PS 54; 1 SAM 26–28"},{m:6,d:30,r:"PS 140; 1 SAM 29–31"},{m:7,d:1,r:"2 SAMUEL 1–2; PS 86"},{m:7,d:2,r:"PS 120; 2 SAM 3–4; PS 10"},{m:7,d:3,r:"PS 27; 2 SAM 5–6; PS 144"},{m:7,d:4,r:"2 SAM 7; PS 89"},{m:7,d:5,r:"PS 60; 2 SAM 8–10"},{m:7,d:6,r:"2 SAM 11–12; PS 51"},{m:7,d:7,r:"PS 36; 2 SAM 13–14"},{m:7,d:8,r:"2 SAM 15–16; PS 70–71"},{m:7,d:9,r:"PS 63; 2 SAM 17–18"},{m:7,d:10,r:"PS 5; 2 SAM 19–20"},{m:7,d:11,r:"2 SAM 21–22; PS 91"},{m:7,d:12,r:"2 SAM 23–24; PS 130"},{m:7,d:13,r:"1 KINGS 1; PS 28"},{m:7,d:14,r:"PS 55; 1 KI 2"},{m:7,d:15,r:"1 KI 3–4; PS 111"},{m:7,d:16,r:"1 KI 5–6; PS 138"},{m:7,d:17,r:"1 KI 7; PS 48"},{m:7,d:18,r:"1 KI 8; PS 96"},{m:7,d:19,r:"1 KI 9–10; JAMES 1"},{m:7,d:20,r:"1 KI 11–12; JAS 2"},{m:7,d:21,r:"1 KI 13–14; JAS 3"},{m:7,d:22,r:"1 KI 15–16; JAS 4"},{m:7,d:23,r:"1 KI 17–18; JAS 5"},{m:7,d:24,r:"PS 115; 1 KI 19–20"},{m:7,d:25,r:"1 KI 21–22; 2 JOHN 1"},{m:7,d:26,r:"2 KINGS 1–2; PS 35"},{m:7,d:27,r:"2 KI 3–4; PS 136"},{m:7,d:28,r:"2 KI 5–6; PS 40"},{m:7,d:29,r:"PS 34; 2 KI 7–8"},{m:7,d:30,r:"PS 58; 2 KI 9–10"},{m:7,d:31,r:"2 KI 11–12; JOHN 1"},{m:8,d:1,r:"2 KI 13–14; JN 2"},{m:8,d:2,r:"2 KI 15–16; JN 3"},{m:8,d:3,r:"2 KI 17; JN 4"},{m:8,d:4,r:"2 KI 18; JN 5"},{m:8,d:5,r:"2 KI 19; JN 6"},{m:8,d:6,r:"2 KI 20; JN 7"},{m:8,d:7,r:"2 KI 21; JN 8"},{m:8,d:8,r:"2 KI 22–23; JN 9"},{m:8,d:9,r:"2 KI 24–25; JN 10; PS 23"},{m:8,d:10,r:"1 CHRONICLES 1; JN 11"},{m:8,d:11,r:"1 CHR 2; JN 12"},{m:8,d:12,r:"1 CHR 3; JN 13; PS 41"},{m:8,d:13,r:"1 CHR 4–5; JN 14"},{m:8,d:14,r:"1 CHR 6; JN 15"},{m:8,d:15,r:"1 CHR 7; JN 16; PS 143"},{m:8,d:16,r:"1 CHR 8–9; JN 17"},{m:8,d:17,r:"1 CHR 10–11; JN 18"},{m:8,d:18,r:"1 CHR 12; JN 19; PS 22"},{m:8,d:19,r:"1 CHR 13–15; PS 150; JN 20"},{m:8,d:20,r:"1 CHR 16–17; JN 21"},{m:8,d:21,r:"1 CHR 18–19; PS 18"},{m:8,d:22,r:"1 CHR 20–22; PS 72"},{m:8,d:23,r:"PS 134; 1 CHR 23–25"},{m:8,d:24,r:"1 CHR 26–27; PHIL 1"},{m:8,d:25,r:"1 CHR 28–29; 2 CHR 1; PHIL 2"},{m:8,d:26,r:"2 CHR 2–5; PS 24; PHIL 3"},{m:8,d:27,r:"PS 132; 2 CHR 6; PHIL 4"},{m:8,d:28,r:"2 CHR 7–9; PS 21"},{m:8,d:29,r:"2 CHR 10–12; PS 11–12"},{m:8,d:30,r:"2 CHR 13–15; PS 101"},{m:8,d:31,r:"2 CHR 16–19; 1 THES 1"},{m:9,d:1,r:"PS 124; 2 CHR 20–21; 1 THES 2"},{m:9,d:2,r:"2 CHR 22–24; 1 THESS 3"},{m:9,d:3,r:"2 CHR 25–27; 1 THESS 4"},{m:9,d:4,r:"2 CHR 28–29; 1 THESS 5"},{m:9,d:5,r:"2 CHR 30–31; PS 66"},{m:9,d:6,r:"NAHUM 1–3; 2 CHR 32–33"},{m:9,d:7,r:"2 CHR 34; ZEPHANIAH 1–3"},{m:9,d:8,r:"2 CHR 35–36; PS 79"},{m:9,d:9,r:"JEREMIAH 1–2; ROMANS 1"},{m:9,d:10,r:"JER 3–4; ROM 2"},{m:9,d:11,r:"JER 5–6; ROM 3; PS 53"},{m:9,d:12,r:"JER 7–8; ROM 4"},{m:9,d:13,r:"JER 9–11; ROM 5"},{m:9,d:14,r:"JER 12–14; ROM 6"},{m:9,d:15,r:"JER 15–16; ROM 7; PS 38"},{m:9,d:16,r:"JER 17–18; ROM 8"},{m:9,d:17,r:"JER 19–21; ROM 9"},{m:9,d:18,r:"PS 82; JER 22–23; ROM 10"},{m:9,d:19,r:"JER 24–25; ROM 11"},{m:9,d:20,r:"JER 26–28; ROM 12"},{m:9,d:21,r:"3 JOHN 1; JER 29–30; ROM 13"},{m:9,d:22,r:"PS 25; JER 31; ROM 14"},{m:9,d:23,r:"JER 32; ROM 15"},{m:9,d:24,r:"JER 33–34; ROM 16"},{m:9,d:25,r:"JER 35–37; 2 TIMOTHY 1"},{m:9,d:26,r:"PS 69; JER 38; 2 TIM 2"},{m:9,d:27,r:"JER 39–42; 2 TIM 3"},{m:9,d:28,r:"JER 43–46; 2 TIM 4"},{m:9,d:29,r:"PS 75; JER 47–48"},{m:9,d:30,r:"PS 83; JER 49; OBADIAH 1"},{m:10,d:1,r:"PS 125–126; JER 50; PS 129"},{m:10,d:2,r:"JER 51; PS 149"},{m:10,d:3,r:"JER 52; PS 74"},{m:10,d:4,r:"LAMENTATIONS 1–2; PS 77"},{m:10,d:5,r:"PS 88; LAM 3"},{m:10,d:6,r:"LAM 4–5; PS 102"},{m:10,d:7,r:"HOSEA 1–5; PS 32"},{m:10,d:8,r:"HOS 6–9; PS 16"},{m:10,d:9,r:"HOS 10–14; PS 85"},{m:10,d:10,r:"HABAKKUK 1–3; PS 46"},{m:10,d:11,r:"ZECHARIAH 1–5; 2 PETER 1"},{m:10,d:12,r:"ZECH 6–9; 2 PT 2"},{m:10,d:13,r:"ZECH 10–14; 2 PT 3"},{m:10,d:14,r:"EZEKIEL 1–3; REVELATION 1"},{m:10,d:15,r:"EZEK 4–6; REV 2"},{m:10,d:16,r:"EZEK 7–9; REV 3"},{m:10,d:17,r:"EZEK 10–12; REV 4; PS 93"},{m:10,d:18,r:"EZEK 13–15; REV 5"},{m:10,d:19,r:"EZEK 16; REV 6"},{m:10,d:20,r:"EZEK 17–18; REV 7; PS 121"},{m:10,d:21,r:"EZEK 19–20; REV 8"},{m:10,d:22,r:"EZEK 21–22; REV 9"},{m:10,d:23,r:"EZEK 23–24; REV 10"},{m:10,d:24,r:"PS 137; EZEK 25–26; REV 11"},{m:10,d:25,r:"EZEK 27–28; REV 12"},{m:10,d:26,r:"EZEK 29–30; REV 13"},{m:10,d:27,r:"EZEK 31–32; REV 14"},{m:10,d:28,r:"EZEK 33–34; PS 100; REV 15"},{m:10,d:29,r:"EZEK 35–36; REV 16"},{m:10,d:30,r:"EZEK 37–38; REV 17"},{m:10,d:31,r:"EZEK 39–40; REV 18"},{m:11,d:1,r:"EZEK 41–42; REV 19"},{m:11,d:2,r:"EZEK 43–44; REV 20"},{m:11,d:3,r:"EZEK 45–46; REV 21"},{m:11,d:4,r:"EZEK 47–48; REV 22"},{m:11,d:5,r:"ISAIAH 1–4; PS 87"},{m:11,d:6,r:"ISA 5–7; COLOSSIANS 1"},{m:11,d:7,r:"ISA 8–11; COL 2"},{m:11,d:8,r:"PS 84; ISA 12–14; COL 3"},{m:11,d:9,r:"ISA 15–18; COL 4"},{m:11,d:10,r:"ISA 19; LUKE 1"},{m:11,d:11,r:"ISA 20–22; LK 2"},{m:11,d:12,r:"ISA 23–24; LK 3"},{m:11,d:13,r:"ISA 25–26; LK 4"},{m:11,d:14,r:"ISA 27–28; LK 5"},{m:11,d:15,r:"ISA 29; LK 6"},{m:11,d:16,r:"ISA 30; LK 7"},{m:11,d:17,r:"ISA 31–32; LK 8"},{m:11,d:18,r:"ISA 33; PS 15; LK 9"},{m:11,d:19,r:"ISA 34–36; LK 10"},{m:11,d:20,r:"ISA 37; PS 76; LK 11"},{m:11,d:21,r:"PS 6; ISA 38–39; LK 12"},{m:11,d:22,r:"ISA 40–41; LK 13"},{m:11,d:23,r:"ISA 42–43; LK 14"},{m:11,d:24,r:"ISA 44–45; LK 15"},{m:11,d:25,r:"ISA 46–48; LK 16"},{m:11,d:26,r:"PS 67; ISA 49–50; LK 17"},{m:11,d:27,r:"ISA 51–53; LK 18"},{m:11,d:28,r:"ISA 54–56; LK 19"},{m:11,d:29,r:"ISA 57–58; LK 20"},{m:11,d:30,r:"PS 14; ISA 59–60; LK 21"},{m:12,d:1,r:"ISA 61–62; LK 22"},{m:12,d:2,r:"ISA 63–64; LK 23"},{m:12,d:3,r:"ISA 65; LK 24"},{m:12,d:4,r:"ISA 66; PS 109; ACTS 1"},{m:12,d:5,r:"JOEL 1–2; ACTS 2"},{m:12,d:6,r:"PS 7; JOEL 3; ACTS 3"},{m:12,d:7,r:"NEHEMIAH 1–2; ACTS 4; PS 2"},{m:12,d:8,r:"NEH 3; PS 122; ACTS 5"},{m:12,d:9,r:"NEH 4–6; PS 13; ACTS 6"},{m:12,d:10,r:"NEH 7; ACTS 7"},{m:12,d:11,r:"NEH 8–9; ACTS 8"},{m:12,d:12,r:"NEH 10; ACTS 9"},{m:12,d:13,r:"NEH 11; ACTS 10"},{m:12,d:14,r:"NEH 12; ACTS 11"},{m:12,d:15,r:"NEH 13; PS 26; ACTS 12"},{m:12,d:16,r:"AMOS 1–3; ACTS 13"},{m:12,d:17,r:"AMOS 4–6; PS 123; ACTS 14"},{m:12,d:18,r:"AMOS 7–9; ACTS 15"},{m:12,d:19,r:"PS 92; ACTS 16; PHILEMON 1"},{m:12,d:20,r:"JONAH 1–4; ACTS 17"},{m:12,d:21,r:"ESTHER 1–2; ACTS 18"},{m:12,d:22,r:"ESTH 3–5; ACTS 19"},{m:12,d:23,r:"ESTH 6–7; PS 73; ACTS 20"},{m:12,d:24,r:"ESTH 8–10; ACTS 21"},{m:12,d:25,r:"DANIEL 1–2; ACTS 22"},{m:12,d:26,r:"DAN 3–4; ACTS 23"},{m:12,d:27,r:"DAN 5–6; PS 64; ACTS 24"},{m:12,d:28,r:"DAN 7–8; ACTS 25"},{m:12,d:29,r:"DAN 9–10; ACTS 26"},{m:12,d:30,r:"DAN 11; ACTS 27"},{m:12,d:31,r:"DAN 12; ACTS 28; PS 145"}];
 
 const MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const BA={"GEN":"Genesis","EX":"Exodus","EXODUS":"Exodus","LEV":"Leviticus","NUM":"Numbers","NUMBERS":"Numbers","DT":"Deuteronomy","DEUT":"Deuteronomy","JOSH":"Joshua","JOSHUA":"Joshua","JDG":"Judges","JUDGES":"Judges","RUTH":"Ruth","1 SAM":"1 Samuel","1 SAMUEL":"1 Samuel","2 SAM":"2 Samuel","2 SAMUEL":"2 Samuel","1 KI":"1 Kings","1 KINGS":"1 Kings","2 KI":"2 Kings","2 KINGS":"2 Kings","1 CHR":"1 Chronicles","1 CHRONICLES":"1 Chronicles","2 CHR":"2 Chronicles","2 CHRONICLES":"2 Chronicles","EZRA":"Ezra","NEH":"Nehemiah","NEHEMIAH":"Nehemiah","ESTH":"Esther","ESTHER":"Esther","JOB":"Job","PS":"Psalms","PSALM":"Psalms","PROV":"Proverbs","PROVERBS":"Proverbs","ECCL":"Ecclesiastes","ECCLESIASTES":"Ecclesiastes","SONG":"Song of Solomon","SONG OF SONGS":"Song of Solomon","ISA":"Isaiah","ISAIAH":"Isaiah","JER":"Jeremiah","JEREMIAH":"Jeremiah","LAM":"Lamentations","LAMENTATIONS":"Lamentations","EZEK":"Ezekiel","EZEKIEL":"Ezekiel","DAN":"Daniel","DANIEL":"Daniel","HOS":"Hosea","HOSEA":"Hosea","JOEL":"Joel","AMOS":"Amos","OBADIAH":"Obadiah","JONAH":"Jonah","MICAH":"Micah","NAHUM":"Nahum","HABAKKUK":"Habakkuk","ZEPHANIAH":"Zephaniah","HAGGAI":"Haggai","ZECH":"Zechariah","ZECHARIAH":"Zechariah","MAL":"Malachi","MALACHI":"Malachi","MT":"Matthew","MATTHEW":"Matthew","MK":"Mark","MARK":"Mark","LK":"Luke","LUKE":"Luke","JN":"John","JOHN":"John","ACTS":"Acts","ROM":"Romans","ROMANS":"Romans","1 COR":"1 Corinthians","1 CORINTHIANS":"1 Corinthians","2 COR":"2 Corinthians","2 CORINTHIANS":"2 Corinthians","GAL":"Galatians","GALATIANS":"Galatians","EPH":"Ephesians","EPHESIANS":"Ephesians","PHIL":"Philippians","PHILIPPIANS":"Philippians","COL":"Colossians","COLOSSIANS":"Colossians","1 THES":"1 Thessalonians","1 THESSALONIANS":"1 Thessalonians","1 THESS":"1 Thessalonians","2 THES":"2 Thessalonians","2 THESSALONIANS":"2 Thessalonians","2 THESS":"2 Thessalonians","1 TIM":"1 Timothy","1 TIMOTHY":"1 Timothy","2 TIM":"2 Timothy","2 TIMOTHY":"2 Timothy","TITUS":"Titus","PHILEMON":"Philemon","HEB":"Hebrews","HEBREWS":"Hebrews","JAS":"James","JAMES":"James","1 PT":"1 Peter","1 PETER":"1 Peter","2 PT":"2 Peter","2 PETER":"2 Peter","1 JN":"1 John","1 JOHN":"1 John","2 JN":"2 John","2 JOHN":"2 John","3 JN":"3 John","3 JOHN":"3 John","JUDE":"Jude","REV":"Revelation","REVELATION":"Revelation"};
@@ -150,197 +149,123 @@ function seg2full(s){const m=s.trim().match(/^(\d?\s?[A-Z]+(?:\s+OF\s+[A-Z]+)?)\
 function esvUrl(p){return`https://www.esv.org/${encodeURIComponent(p).replace(/%20/g,"+")}`;}
 function fmt(s){if(!s||!isFinite(s))return"0:00";return`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;}
 function dayTracks(r){return r.split(";").map(s=>({label:seg2full(s),query:seg2full(s)}));}
+function buildSummary(days){const bc={};for(const d of days)for(const s of d.r.split(";")){const m=s.trim().match(/^(\d?\s?[A-Z]+(?:\s+OF\s+[A-Z]+)?)\s+(.+)$/i);if(m){const b=BA[m[1].toUpperCase()]||m[1];if(!bc[b])bc[b]=[];bc[b].push(m[2]);}}const sorted=BO.filter(b=>bc[b]);const r=sorted.map(b=>({book:b,refs:bc[b]}));for(const b of Object.keys(bc))if(!sorted.includes(b))r.push({book:b,refs:bc[b]});return r;}
 
-function buildSummary(days){
-  const bc={};for(const d of days)for(const s of d.r.split(";")){const m=s.trim().match(/^(\d?\s?[A-Z]+(?:\s+OF\s+[A-Z]+)?)\s+(.+)$/i);if(m){const b=BA[m[1].toUpperCase()]||m[1];if(!bc[b])bc[b]=[];bc[b].push(m[2]);}}
-  const sorted=BO.filter(b=>bc[b]);const r=sorted.map(b=>({book:b,refs:bc[b]}));for(const b of Object.keys(bc))if(!sorted.includes(b))r.push({book:b,refs:bc[b]});return r;
-}
+let S={completed:JSON.parse(localStorage.getItem("tpc2026")||"{}"),selS:null,selE:null,showSum:false,mo:new Date().getMonth(),aState:"idle",aCur:null,aQueue:[],aErr:null,aProg:0,aDur:0};
+const A=new Audio();let qR=[];
+function save(){localStorage.setItem("tpc2026",JSON.stringify(S.completed));}
+function ti(){const n=new Date();return PLAN.findIndex(p=>p.m===n.getMonth()+1&&p.d===n.getDate());}
 
-// ─── STATE ───
-let state = {
-  completed: JSON.parse(localStorage.getItem("tpc2026")||"{}"),
-  selS: null, selE: null, showSum: false,
-  mo: new Date().getMonth(),
-  // audio
-  aState: "idle", aCur: null, aQueue: [], aErr: null, aProg: 0, aDur: 0,
-};
-const audio = new Audio();
-let qRef = [];
+// Audio
+function loadTrack(t){S.aCur=t;S.aState="loading";S.aErr=null;S.aProg=0;S.aDur=0;A.src=`/audio?q=${encodeURIComponent(t.query)}`;A.load();render();}
+A.oncanplay=function(){A.play().catch(e=>{S.aErr="Playback blocked";S.aState="error";render();});};
+A.onplay=function(){S.aState="playing";render();};
+A.onpause=function(){if(!A.ended){S.aState="paused";render();}};
+A.ontimeupdate=function(){S.aProg=A.currentTime;updProg();};
+A.onloadedmetadata=function(){S.aDur=A.duration;render();};
+A.onerror=function(){S.aErr="Could not load audio.";S.aState="error";render();};
+A.onended=function(){if(qR.length>0){const[n,...r]=qR;qR=r;S.aQueue=r;loadTrack(n);}else{S.aState="idle";S.aCur=null;render();}};
+function playTracks(t){if(!t.length)return;const[f,...r]=t;qR=r;S.aQueue=r;loadTrack(f);}
+function toggleA(){A.paused?A.play():A.pause();}
+function skipT(){if(qR.length>0){const[n,...r]=qR;qR=r;S.aQueue=r;loadTrack(n);}else stopA();}
+function stopA(){A.pause();A.removeAttribute("src");A.load();qR=[];S.aCur=null;S.aQueue=[];S.aState="idle";S.aErr=null;S.aProg=0;S.aDur=0;render();}
+function seekA(e){const r=e.currentTarget.getBoundingClientRect();if(S.aDur>0)A.currentTime=(e.clientX-r.left)/r.width*S.aDur;}
+function updProg(){const f=document.getElementById("pf");const t=document.getElementById("pt");if(f&&S.aDur>0)f.style.width=`${(S.aProg/S.aDur)*100}%`;if(t)t.textContent=fmt(S.aProg);}
 
-function save(){ localStorage.setItem("tpc2026", JSON.stringify(state.completed)); }
-function todayIdx(){ const n=new Date(); return PLAN.findIndex(p=>p.m===n.getMonth()+1&&p.d===n.getDate()); }
+// Actions
+function toggleDay(i){S.completed[i]?delete S.completed[i]:(S.completed[i]=true);save();render();}
+function handleSel(i){if(S.selS===null){S.selS=i;S.selE=null;S.showSum=false;}else if(S.selE===null){const a=Math.min(S.selS,i),b=Math.max(S.selS,i);S.selS=a;S.selE=b;}else{S.selS=i;S.selE=null;S.showSum=false;}render();}
+function selToday(){const t=ti();if(t>=0){S.selS=0;S.selE=t;S.showSum=false;render();}}
+function markRange(){if(S.selS===null)return;const e=S.selE??S.selS,s=Math.min(S.selS,e),end=Math.max(S.selS,e);for(let i=s;i<=end;i++)S.completed[i]=true;save();render();}
+function clearSel(){S.selS=null;S.selE=null;S.showSum=false;render();}
+function showSum(){S.showSum=true;render();setTimeout(()=>{const el=document.getElementById("sum");if(el)el.scrollIntoView({behavior:"smooth"});},50);}
+function setMo(m){S.mo=m;render();}
+function getUnread(){if(S.selS===null)return[];const e=S.selE??S.selS,s=Math.min(S.selS,e),end=Math.max(S.selS,e);return PLAN.slice(s,end+1).filter((_,i)=>!S.completed[s+i]);}
 
-// ─── AUDIO ───
-function loadTrack(track){
-  state.aCur=track; state.aState="loading"; state.aErr=null; state.aProg=0; state.aDur=0;
-  audio.src=`/audio?q=${encodeURIComponent(track.query)}`;
-  audio.load();
-  render();
-}
-audio.oncanplay=function(){audio.play().catch(e=>{state.aErr="Playback blocked: "+e.message;state.aState="error";render();});};
-audio.onplay=function(){state.aState="playing";render();};
-audio.onpause=function(){if(!audio.ended){state.aState="paused";render();}};
-audio.ontimeupdate=function(){state.aProg=audio.currentTime;updateProgress();};
-audio.onloadedmetadata=function(){state.aDur=audio.duration;render();};
-audio.onerror=function(){state.aErr="Could not load audio.";state.aState="error";render();};
-audio.onended=function(){
-  if(qRef.length>0){const[n,...r]=qRef;qRef=r;state.aQueue=r;loadTrack(n);}
-  else{state.aState="idle";state.aCur=null;render();}
-};
+// Icons
+const ic={play:`<svg width="10" height="12" viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12" fill="#4A7C59"/></svg>`,playW:`<svg width="8" height="10" viewBox="0 0 8 10"><polygon points="0,0 8,5 0,10" fill="#fff"/></svg>`,check:`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,pause:`<svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/></svg>`,playLg:`<svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><polygon points="3,1 13,7 3,13"/></svg>`,spin:`<svg width="18" height="18" viewBox="0 0 18 18" class="spinner"><circle cx="9" cy="9" r="7" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="32" stroke-dashoffset="10"/></svg>`};
 
-function playTracks(tracks){if(!tracks.length)return;const[f,...r]=tracks;qRef=r;state.aQueue=r;loadTrack(f);}
-function toggleAudio(){audio.paused?audio.play():audio.pause();}
-function skipTrack(){if(qRef.length>0){const[n,...r]=qRef;qRef=r;state.aQueue=r;loadTrack(n);}else stopAudio();}
-function stopAudio(){audio.pause();audio.removeAttribute("src");audio.load();qRef=[];state.aCur=null;state.aQueue=[];state.aState="idle";state.aErr=null;state.aProg=0;state.aDur=0;render();}
-function seekAudio(e){const r=e.currentTarget.getBoundingClientRect();if(state.aDur>0)audio.currentTime=(e.clientX-r.left)/r.width*state.aDur;}
-
-// Lightweight progress update (doesn't re-render entire DOM)
-function updateProgress(){
-  const fill=document.getElementById("pbar-fill");
-  const timeL=document.getElementById("pbar-time-l");
-  if(fill&&state.aDur>0)fill.style.width=`${(state.aProg/state.aDur)*100}%`;
-  if(timeL)timeL.textContent=fmt(state.aProg);
-}
-
-// ─── ACTIONS ───
-function toggleDay(i){state.completed[i]?delete state.completed[i]:(state.completed[i]=true);save();render();}
-function handleSel(i){
-  if(state.selS===null){state.selS=i;state.selE=null;state.showSum=false;}
-  else if(state.selE===null){state.selS=Math.min(state.selS,i);state.selE=Math.max(state.selS,i);}
-  else{state.selS=i;state.selE=null;state.showSum=false;}
-  render();
-}
-function selToday(){const t=todayIdx();if(t>=0){state.selS=0;state.selE=t;state.showSum=false;render();}}
-function markRange(){
-  if(state.selS===null)return;const e=state.selE??state.selS,s=Math.min(state.selS,e),end=Math.max(state.selS,e);
-  for(let i=s;i<=end;i++)state.completed[i]=true;save();render();
-}
-function clearSel(){state.selS=null;state.selE=null;state.showSum=false;render();}
-function showSummary(){state.showSum=true;render();setTimeout(()=>{const el=document.getElementById("summary");if(el)el.scrollIntoView({behavior:"smooth"});},50);}
-function setMonth(m){state.mo=m;render();}
-
-function getUnread(){
-  if(state.selS===null)return[];const e=state.selE??state.selS,s=Math.min(state.selS,e),end=Math.max(state.selS,e);
-  return PLAN.slice(s,end+1).filter((_,i)=>!state.completed[s+i]);
-}
-
-// ─── SVG helpers ───
-const playIcon=`<svg width="10" height="12" viewBox="0 0 10 12" fill="#6B8F71"><polygon points="0,0 10,6 0,12"/></svg>`;
-const playIconW=`<svg width="10" height="12" viewBox="0 0 10 12" fill="#FFF"><polygon points="0,0 10,6 0,12"/></svg>`;
-const playIconWsm=`<svg width="8" height="10" viewBox="0 0 8 10" fill="#FFF"><polygon points="0,0 8,5 0,10"/></svg>`;
-const checkIcon=`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const pauseIcon=`<svg width="16" height="16" viewBox="0 0 16 16" fill="#FFF"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>`;
-const playIconLg=`<svg width="16" height="16" viewBox="0 0 16 16" fill="#FFF"><polygon points="4,2 14,8 4,14"/></svg>`;
-const spinIcon=`<svg width="18" height="18" viewBox="0 0 18 18" class="spinner"><circle cx="9" cy="9" r="7" fill="none" stroke="#FFF" stroke-width="2" stroke-dasharray="32" stroke-dashoffset="10"/></svg>`;
-
-// ─── RENDER ───
 function render(){
-  const s=state;const ti=todayIdx();const unread=getUnread();
-  const selCt=s.selE!==null?s.selE-s.selS+1:(s.selS!==null?1:0);
-  const mDays=PLAN.map((p,i)=>({...p,idx:i})).filter(p=>p.m===s.mo+1);
-  const cc=Object.keys(s.completed).length;const pct=((cc/PLAN.length)*100).toFixed(1);
-  const summary=s.showSum&&unread.length?buildSummary(unread):[];
-  const pv=s.aState!=="idle";
+  const t=ti(),unread=getUnread(),selCt=S.selE!==null?S.selE-S.selS+1:(S.selS!==null?1:0);
+  const mD=PLAN.map((p,i)=>({...p,idx:i})).filter(p=>p.m===S.mo+1);
+  const cc=Object.keys(S.completed).length,pct=((cc/PLAN.length)*100),summary=S.showSum&&unread.length?buildSummary(unread):[];
+  const pv=S.aState!=="idle";
+  // Progress ring
+  const circ=2*Math.PI*19,offset=circ-(pct/100)*circ;
 
-  let h=`
-  <div class="header"><div class="header-inner">
-    <div class="header-row"><h1>In the Word</h1><span class="church">Trinity Presbyterian</span></div>
-    <div class="progress-row"><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div><span class="progress-label">${cc}/${PLAN.length}</span></div>
-  </div></div>
-  <div class="content">
-    <div class="toolbar"><div class="toolbar-btns">
-      <button class="btn" onclick="selToday()">Select through today</button>`;
-
-  if(s.selS!==null){
-    h+=`<button class="btn btn-green" onclick="showSummary()">Catch-up summary</button>
-    <button class="btn" onclick="markRange()">Mark all complete</button>
-    <button class="btn btn-link" onclick="clearSel()">Clear</button>`;
+  let h=`<div class="header"><div class="header-inner">
+    <div class="header-top"><h1>In the Word</h1><span class="tag">TPC 2026</span></div>
+    <div class="progress-card">
+      <div class="progress-ring">
+        <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="#E8E6E1" stroke-width="4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#4A7C59" stroke-width="4" stroke-linecap="round" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/></svg>
+        <span class="pct">${Math.round(pct)}%</span>
+      </div>
+      <div class="progress-meta"><div class="label">${cc} of ${PLAN.length} days complete</div><div class="detail">${PLAN.length-cc} remaining</div></div>
+    </div>
+  </div></div><div class="content">
+    <div class="tools">
+      <button class="chip" onclick="selToday()">Select through today</button>`;
+  if(S.selS!==null){
+    h+=`<button class="chip chip-green" onclick="showSum()">Catch-up summary</button>
+    <button class="chip" onclick="markRange()">Mark all complete</button>
+    <button class="chip chip-ghost" onclick="clearSel()">Clear</button>`;
   }
   h+=`</div>`;
-  if(s.selS!==null){
-    h+=`<p class="sel-info">${s.selE!==null?`${selCt} days selected (${unread.length} unread)`:"Tap another day to complete the range"}</p>`;
-  }
-  h+=`</div>`;
+  if(S.selS!==null)h+=`<p class="sel-info">${S.selE!==null?`${selCt} days selected · ${unread.length} unread`:"Tap another day to complete the range"}</p>`;
 
-  // Summary
   if(summary.length){
-    h+=`<div class="summary" id="summary"><div class="summary-head"><h3>Your catch-up reading</h3>
-      <button class="btn btn-green" style="font-size:12px;padding:5px 12px;display:flex;align-items:center;gap:5px" onclick="playAllUnread()">${playIconWsm} Listen to all</button></div>
-      <p class="summary-sub">${unread.length} unread days consolidated by book</p>`;
+    h+=`<div class="summary-card" id="sum"><div class="summary-head"><h3>Catch-up reading</h3>
+      <button class="listen-chip" onclick="playAllUnread()">${ic.playW} Listen to all</button></div>
+      <p class="summary-sub">${unread.length} unread days, consolidated by book</p>`;
     for(const{book,refs}of summary){
-      h+=`<div class="summary-row"><div style="flex:1;min-width:0"><span class="summary-book">${book}</span><span class="summary-refs">${refs.join(", ")}</span></div>
-        <button class="summary-listen" onclick="playBook('${book.replace(/'/g,"\\'")}',${JSON.stringify(refs).replace(/"/g,'&quot;')})">${playIconWsm} Listen</button></div>`;
+      h+=`<div class="summary-row"><span class="summary-book">${book}</span><span class="summary-refs">${refs.join(", ")}</span>
+        <button class="listen-chip" onclick="playBook('${book.replace(/'/g,"\\'")}',${JSON.stringify(refs).replace(/"/g,'&quot;')})">${ic.playW} Listen</button></div>`;
     }
-    h+=`<p class="summary-footer">ESV audio read by David Cochran Heath, provided free by Crossway.</p></div>`;
+    h+=`<p class="summary-footer">ESV audio by David Cochran Heath · Crossway</p></div>`;
   }
 
-  // Month nav
   h+=`<div class="month-nav">
-    <button class="month-btn" ${s.mo===0?"disabled":""} onclick="setMonth(${s.mo-1})">←</button>
-    <h2>${MONTHS[s.mo]}</h2>
-    <button class="month-btn" ${s.mo===11?"disabled":""} onclick="setMonth(${s.mo+1})">→</button></div>`;
+    <button class="month-btn" ${S.mo===0?"disabled":""} onclick="setMo(${S.mo-1})">←</button>
+    <h2>${MONTHS[S.mo]}</h2>
+    <button class="month-btn" ${S.mo===11?"disabled":""} onclick="setMo(${S.mo+1})">→</button></div>`;
 
-  // Days
-  h+=`<div style="padding-bottom:${pv?140:40}px">`;
-  for(const{d,r,idx}of mDays){
-    const done=!!s.completed[idx],today=idx===ti;
-    const sel=s.selS!==null&&idx>=Math.min(s.selS,s.selE??s.selS)&&idx<=Math.max(s.selS,s.selE??s.selS);
-    const bnd=idx===s.selS||idx===s.selE;
+  h+=`<div style="padding-bottom:${pv?130:32}px">`;
+  for(const{d,r,idx}of mD){
+    const done=!!S.completed[idx],today=idx===t;
+    const sel=S.selS!==null&&idx>=Math.min(S.selS,S.selE??S.selS)&&idx<=Math.max(S.selS,S.selE??S.selS);
+    const bnd=idx===S.selS||idx===S.selE;
     let cls="day";if(today)cls+=" today";if(sel)cls+=" selected";if(bnd)cls+=" bound";
     h+=`<div class="${cls}">
-      <button class="checkbox${done?" done":""}" onclick="event.stopPropagation();toggleDay(${idx})">${done?checkIcon:""}</button>
-      <div class="day-content" onclick="handleSel(${idx})">
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">
-          <span class="day-num">${String(d).padStart(2,"0")}</span>
-          ${today?'<span class="day-today-badge">Today</span>':""}
-        </div>
-        <p class="day-reading${done?" done":""}">${r}</p>
+      <button class="cb${done?" done":""}" onclick="event.stopPropagation();toggleDay(${idx})">${done?ic.check:""}</button>
+      <div class="day-body" onclick="handleSel(${idx})">
+        <div class="day-meta"><span class="day-num">${String(d).padStart(2,"0")}</span>${today?'<span class="day-badge">Today</span>':""}</div>
+        <p class="day-text${done?" done":""}">${r}</p>
       </div>
-      <button class="play-btn" onclick="event.stopPropagation();playDay('${r.replace(/'/g,"\\'")}')" title="Listen">${playIcon}</button>
+      <button class="play-btn" onclick="event.stopPropagation();playDay('${r.replace(/'/g,"\\'")}')" title="Listen">${ic.play}</button>
     </div>`;
   }
   h+=`</div></div>`;
 
-  // Player
   if(pv){
-    const isErr=s.aState==="error";
+    const isErr=S.aState==="error";
     h+=`<div class="player"><div class="player-inner"><div class="player-row">
-      <button class="player-btn${isErr?" error":""}" onclick="${isErr?"stopAudio()":"toggleAudio()"}">
-        ${s.aState==="loading"?spinIcon:s.aState==="playing"?pauseIcon:isErr?"<span style='font-size:16px'>✕</span>":playIconLg}
-      </button>
-      <div class="player-info">
-        <div class="player-title">${s.aState==="loading"?`Loading ${s.aCur?.label||""}...`:s.aCur?.label||""}</div>
-        ${isErr?`<div class="player-error"><span>${s.aErr} </span><a href="${esvUrl(s.aCur?.query||"")}" target="_blank">Open on ESV.org</a></div>`
-        :`<div class="player-progress">
-          <span class="player-time" id="pbar-time-l">${fmt(s.aProg)}</span>
-          <div class="player-bar" onclick="seekAudio(event)">
-            <div class="player-bar-fill" id="pbar-fill" style="width:${s.aDur>0?(s.aProg/s.aDur)*100:0}%"></div>
-            ${s.aState==="loading"?'<div class="shimmer"></div>':""}
-          </div>
-          <span class="player-time" style="text-align:right">${fmt(s.aDur)}</span>
-        </div>`}
-      </div>
-      ${s.aQueue.length>0?`<button class="player-skip" onclick="skipTrack()" title="Skip">⏭</button>`:""}
-      <button class="player-close" onclick="stopAudio()">✕</button>
-    </div>
-    ${s.aQueue.length>0&&!isErr?`<div class="player-queue">Up next: ${s.aQueue[0].label}${s.aQueue.length>1?` + ${s.aQueue.length-1} more`:""}</div>`:""}
-    </div></div>`;
+      <button class="player-btn${isErr?" err":""}" onclick="${isErr?"stopA()":"toggleA()"}">
+        ${S.aState==="loading"?ic.spin:S.aState==="playing"?ic.pause:isErr?"<span style='font-size:16px'>✕</span>":ic.playLg}
+      </button><div class="player-info">
+        <div class="player-title">${S.aState==="loading"?`Loading ${S.aCur?.label||""}...`:S.aCur?.label||""}</div>
+        ${isErr?`<div class="player-err"><span>${S.aErr} </span><a href="${esvUrl(S.aCur?.query||"")}" target="_blank">Open on ESV.org</a></div>`
+        :`<div class="player-progress"><span class="player-time" id="pt">${fmt(S.aProg)}</span><div class="player-bar" onclick="seekA(event)"><div class="player-fill" id="pf" style="width:${S.aDur>0?(S.aProg/S.aDur)*100:0}%"></div>${S.aState==="loading"?'<div class="shimmer"></div>':""}</div><span class="player-time" style="text-align:right">${fmt(S.aDur)}</span></div>`}
+      </div>${S.aQueue.length>0?'<button class="player-skip" onclick="skipT()">⏭</button>':""}<button class="player-close" onclick="stopA()">✕</button>
+    </div>${S.aQueue.length>0&&!isErr?`<div class="player-queue">Up next: ${S.aQueue[0].label}${S.aQueue.length>1?` + ${S.aQueue.length-1} more`:""}</div>`:""}</div></div>`;
   }
 
-  // Toast
-  if(s.selS!==null&&s.selE===null&&!pv){
-    h+=`<div class="toast">Tap another day to complete the range</div>`;
-  }
-
+  if(S.selS!==null&&S.selE===null&&!pv)h+=`<div class="toast">Tap another day to complete the range</div>`;
   document.getElementById("app").innerHTML=h;
 }
 
-// Global helpers called from onclick
 window.playDay=function(r){playTracks(dayTracks(r));};
-window.playBook=function(book,refs){playTracks(refs.map(r=>({label:`${book} ${r}`,query:`${book} ${r}`})));};
+window.playBook=function(b,refs){playTracks(refs.map(r=>({label:`${b} ${r}`,query:`${b} ${r}`})));};
 window.playAllUnread=function(){const t=[];for(const d of getUnread())t.push(...dayTracks(d.r));playTracks(t);};
-
-// Init
 render();
 </script>
 </body>
