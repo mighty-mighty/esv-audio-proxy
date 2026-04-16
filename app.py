@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 import os
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__, static_folder=".")
 CORS(app)
 
 ESV_KEY = os.environ.get("ESV_API_KEY", "131cf9d78015127851f546e00606324f2c7b2582")
@@ -11,7 +11,7 @@ ESV_AUDIO_URL = "https://api.esv.org/v3/passage/audio/"
 
 @app.route("/")
 def index():
-    return send_from_directory("static", "index.html")
+    return send_from_directory(".", "index.html")
 
 @app.route("/audio")
 def audio():
